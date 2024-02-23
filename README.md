@@ -2,12 +2,7 @@
 ## Deep Learning Module 21 Challenge
 This script contains two Google Colab notebooks
 
-First reads in the charity_data.csv to a Pandas DataFrame, and be sure to identify the following in your dataset:
-What variable(s) are the target(s) for your model?
-What variable(s) are the feature(s) for your model?
-Drop the EIN and NAME columns.
-
-Determine the number of unique values for each column.
+First reads in the charity_data.csv to a Pandas DataFrame and drops the identification columns: "EIN" and "NAME." Then counts the number of unique values for each column, and counts the values for the "APPLICATION_TYPE" column. It then replaces every value with a count of less than 500 to a single value simply called, "Other."
 
 For columns that have more than 10 unique values, determine the number of data points for each unique value.
 
