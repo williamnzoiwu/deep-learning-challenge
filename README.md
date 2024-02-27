@@ -2,65 +2,11 @@
 ## Deep Learning Module 21 Challenge
 This script contains two Google Colab notebooks
 
-First reads in the charity_data.csv to a Pandas DataFrame and drops the identification columns: "EIN" and "NAME." Then counts the number of unique values for each column, and counts the values for the "APPLICATION_TYPE" column. It then replaces every value with a count of less than 500 to a single value simply called, "Other."
+### Preprocessing the Data
+The first notebook first reads in the charity_data.csv to a Pandas DataFrame and drops the identification columns: "EIN" and "NAME." Then counts the number of unique values for each column, and counts the values for the "APPLICATION_TYPE" column. It then replaces every value with a count of less than 500 to a single value simply called, "Other." Next, does the same for the "CLASSIFICATION column, but chooses a cutoff value of 1,000, so every value that appears less than 1,00 times is grouped into "Other." Next, uses pd.get_dummies() to encode categorical variables and split the preprocessed data into a features array, X, and a target array, y. These arrays are then used to split the data into training and testing datasets. The datasets are then scaled by creating a StandardScaler instance, fitting it to the training data, and using the transform function.
 
-For columns that have more than 10 unique values, determine the number of data points for each unique value.
+### Compiling, Training, and Evaluating the Model
+The code then creates a binary classification model using TensorFLow that can predict if an Alphabet Soup-funded organization will be successful based on the features in the dataset, with two hidden layers and an output layer. The hidden layers use the ReLU activation function while the output layer uses Sigmoid. Afterwards the model is then complied and fitted, using 100 epochs to train it. Once the model is fitted, it is then evaluated using the test data to get the loss and accuracy, and receives an accuracy of 73%. Lastly, the model then exported to an HDF5 file.
 
-Use the number of data points for each unique value to pick a cutoff point to bin "rare" categorical variables together in a new value, Other, and then check if the binning was successful.
-
-Use pd.get_dummies() to encode categorical variables.
-
-Split the preprocessed data into a features array, X, and a target array, y. Use these arrays and the train_test_split function to split the data into training and testing datasets.
-
-Scale the training and testing features datasets by creating a StandardScaler instance, fitting it to the training data, then using the transform function.
-
-Step 2: Compile, Train, and Evaluate the Model
-Using your knowledge of TensorFlow, you’ll design a neural network, or deep learning model, to create a binary classification model that can predict if an Alphabet Soup-funded organization will be successful based on the features in the dataset. You’ll need to think about how many inputs there are before determining the number of neurons and layers in your model. Once you’ve completed that step, you’ll compile, train, and evaluate your binary classification model to calculate the model’s loss and accuracy.
-
-Continue using the file in Google Colab in which you performed the preprocessing steps from Step 1.
-
-Create a neural network model by assigning the number of input features and nodes for each layer using TensorFlow and Keras.
-
-Create the first hidden layer and choose an appropriate activation function.
-
-If necessary, add a second hidden layer with an appropriate activation function.
-
-Create an output layer with an appropriate activation function.
-
-Check the structure of the model.
-
-Compile and train the model.
-
-Create a callback that saves the model's weights every five epochs.
-
-Evaluate the model using the test data to determine the loss and accuracy.
-
-Save and export your results to an HDF5 file. Name the file AlphabetSoupCharity.h5.
-
-Step 3: Optimize the Model
-Using your knowledge of TensorFlow, optimize your model to achieve a target predictive accuracy higher than 75%.
-
-Use any or all of the following methods to optimize your model:
-
-Adjust the input data to ensure that no variables or outliers are causing confusion in the model, such as:
-Dropping more or fewer columns.
-Creating more bins for rare occurrences in columns.
-Increasing or decreasing the number of values for each bin.
-Add more neurons to a hidden layer.
-Add more hidden layers.
-Use different activation functions for the hidden layers.
-Add or reduce the number of epochs to the training regimen.
-Note: If you make at least three attempts at optimizing your model, you will not lose points if your model does not achieve target performance.
-
-Create a new Google Colab file and name it AlphabetSoupCharity_Optimization.ipynb.
-
-Import your dependencies and read in the charity_data.csv to a Pandas DataFrame.
-
-Preprocess the dataset as you did in Step 1. Be sure to adjust for any modifications that came out of optimizing the model.
-
-Design a neural network model, and be sure to adjust for modifications that will optimize the model to achieve higher than 75% accuracy.
-
-Save and export your results to an HDF5 file. Name the file AlphabetSoupCharity_Optimization.h5.
-
-Step 4: Write a Report on the Neural Network Model
-For this part of the assignment, you’ll write a report on the performance of the deep learning model you created for Alphabet Soup.
+### Optimizing the Model
+The second notebook is very similar to the first one, just aiming to optimize the model to receive an accuracy of 75% or higher. To achieve this target accuracy, the only change made to the notebook is that the "NAME" column is kept in the orginal dataframe, instead of being dropped along with the "EIN" column. The "NAME" column is kept and the values with less than 100 counts are replaced with "Other." With just this change, the model is able to obtain an accuracy of 75%. The second notebook also includes and analysis report on the model's performance at the end.
